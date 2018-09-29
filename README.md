@@ -15,6 +15,7 @@
 * [optional] The creator can add named versions of the text.
 * [optional] The creator can mark expressions of the text and specify alternatives for them (for a version).
 * The creator can toggle a setting which specifies that the user can look up any (unannotated) word in the default dictionary by clicking/tapping on it.
+* The creator can specify how dictionary links should be opened (iframe with source reference, same window, new tab, popup)
 
 ### User
 
