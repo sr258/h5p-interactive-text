@@ -1,12 +1,247 @@
 [
   {
-    "label": "Text",
-    "importance": "high",
-    "name": "textField",
-    "type": "text",
-    "widget": "textarea",
-    "placeholder": "Hello world",
-    "default": "Hello %username",
-    "description": "Says hello to someone"
+    "name": "media",
+    "type": "group",
+    "label": "Media",
+    "importance": "medium",
+    "fields": [
+      {
+        "name": "type",
+        "type": "library",
+        "label": "Type",
+        "options": [
+          "H5P.Image 1.0",
+          "H5P.Video 1.3"
+        ],
+        "optional": true,
+        "description": "Optional media to display above the question."
+      }
+    ]
+  },
+  {
+    "name": "content",
+    "type": "group",
+    "label": "Content",
+    "importance": "medium",
+    "fields": [
+      {
+        "name": "paragraphs",
+        "type": "list",
+        "label": "Paragraphs",
+        "importance": "high",
+        "description": "Enter the text here and annotate it.",
+        "entity": "paragraph",
+        "optional": false,
+        "min": 1,
+        "field": {
+          "name": "paragraphGroup",
+          "type": "group",
+          "label": "Paragraph",
+          "fields": [
+            {
+              "name": "text",
+              "type": "text",
+              "label": "Text",
+              "widget": "html",
+              "tags": [
+                "strong",
+                "em",
+                "sub",
+                "sup",
+                "u",
+                "strike",
+                "ul",
+                "ol",
+                "blockquote",
+                "a",
+                "table",
+                "hr"
+              ]
+            },
+            {
+              "name": "hide",
+              "type": "boolean",
+              "label": "Hide this paragraph by default",
+              "default": false
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "source",
+    "type": "group",
+    "label": "Source reference",
+    "importance": "medium",
+    "fields": [
+      {
+        "name": "author",
+        "type": "text",
+        "label": "Author's name",
+        "optional": true
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "label": "Title of text",
+        "optional": true
+      },
+      {
+        "name": "date",
+        "type": "text",
+        "label": "Date of publication",
+        "optional": true
+      },
+      {
+        "name": "url",
+        "type": "text",
+        "label": "URL",
+        "optional": true
+      }
+    ]
+  },
+  {
+    "name": "dictionaries",
+    "type": "group",
+    "label": "Dictionaries",
+    "importance": "medium",
+    "fields": [
+      {
+        "name": "customdictionaries",
+        "type": "list",
+        "label": "Custom dictionaries",
+        "importance": "high",
+        "description": "If you want to use a dictionary that is not in the list, you can enter it here.",
+        "entity": "custom dictionary",
+        "optional": true,
+        "min": 0,
+        "field": {
+          "name": "customdictionary",
+          "type": "group",
+          "label": "Custom dictionary",
+          "fields": [
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Name",
+              "optional": false,
+              "description": "Reference this name in the text",
+              "regexp": {
+                "pattern": "^[\\w\\d]*$"
+              }
+            },
+            {
+              "name": "url",
+              "type": "text",
+              "label": "URL",
+              "optional": false,
+              "description": "Use @headword to insert the headword into the url."
+            },
+            {
+              "name": "css",
+              "type": "text",
+              "label": "CSS (optional)",
+              "optional": true,
+              "description": "You can style the dictionary entry with custom css rules",
+              "widget": "showWhen",
+              "showWhen": {
+                "rules": [
+                  {
+                    "field": "../../../behaviour/dictionaryopenformat",
+                    "equals": "popup"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "behaviour",
+    "type": "group",
+    "label": "Behavioural settings",
+    "importance": "medium",
+    "fields": [
+      {
+        "name": "freelookup",
+        "type": "boolean",
+        "label": "Users can click on any word to look it up in the default dictionary",
+        "optional": false,
+        "default": false
+      },
+      {
+        "name": "defaultdictionary",
+        "type": "text",
+        "label": "Default dictionary name",
+        "optional": true,
+        "default": "LDOCE",
+        "widget": "showWhen",
+        "showWhen": {
+          "rules": [
+            {
+              "field": "freelookup",
+              "equals": true
+            }
+          ]
+        }
+      },
+      {
+        "name": "dictionaryopenformat",
+        "type": "select",
+        "label": "Open dictionaries as a ...",
+        "optional": false,
+        "options": [
+          {
+            "value": "popup",
+            "label": "small popup (recommended)"
+          },
+          {
+            "value": "window",
+            "label": "popup window"
+          },
+          {
+            "value": "linksamewindow",
+            "label": "link (same window)"
+          },
+          {
+            "value": "linknewwindow",
+            "label": "link (new window)"
+          }
+        ],
+        "default": "popup"
+      },
+      {
+        "name": "text2speech",
+        "type": "select",
+        "label": "Language used for text-to-speech",
+        "optional": false,
+        "options": [
+          {
+            "value": "disabled",
+            "label": "disable text-to-speech"
+          },
+          {
+            "value": "en-US",
+            "label": "English (USA)"
+          },
+          {
+            "value": "en-GB",
+            "label": "English (GB)"
+          },
+          {
+            "value": "de-DE",
+            "label": "German"
+          },
+          {
+            "value": "fr-FR",
+            "label": "French"
+          }
+        ],
+        "default": "disabled"
+      }
+    ]
   }
 ]
