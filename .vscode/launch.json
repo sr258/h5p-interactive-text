@@ -1,0 +1,19 @@
+{
+  "version": "0.1.0",
+  "configurations": [
+    {
+      "name": "Launch localhost",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceFolder}/dist",
+      "runtimeExecutable": "/usr/bin/chromium-browser",
+      "runtimeArgs": [
+        "--new-window",
+        "--user-data-dir=${workspaceFolder}/DevProfile",
+        "--remote-debugging-port=9222"
+      ],
+      "preLaunchTask": "npm bdd"
+    }
+  ]
+}
