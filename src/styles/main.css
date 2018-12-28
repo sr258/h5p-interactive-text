@@ -1,3 +1,27 @@
 .paragraph:not(.opened) > .content {
   display: none;
 }
+
+.paragraph.opened {
+  display: flex;
+}
+
+.paragraph.opened > .toggle {
+  float: left;
+  align-self: stretch;
+  align-items: center;
+  display: flex;
+  color: gray;
+  font-size: small;
+  margin-right: 0.6em;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+}
+
+.paragraph.opened .fa-eye {
+  display: none;
+}
+
+.paragraph:not(.opened) .fa-eye-slash {
+  display: none;
+}

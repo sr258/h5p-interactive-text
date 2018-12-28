@@ -17,7 +17,13 @@
     }
   ],
   "preloadedCss": [],
-  "preloadedDependencies": [],
+  "preloadedDependencies": [
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 5
+    }
+  ],
   "editorDependencies": [
     {
       "machineName": "H5PEditor.ShowWhen",

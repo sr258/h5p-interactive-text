@@ -3,7 +3,7 @@ import TextController from "./text-controller";
 import { TextState, ParagraphStates } from "./text-state";
 import { IObserver, IObservable } from "./observable";
 
-export default class TextView implements IObserver {  
+export default class TextView implements IObserver {
   private root: JQuery<HTMLElement>;
 
   public constructor(private jQuery: JQueryStatic, config: InteractiveTextConfig, private state: TextState, private controller: TextController) {
@@ -41,7 +41,8 @@ export default class TextView implements IObserver {
       outer.addClass("opened");
 
     this.jQuery('<div></div>')
-      .text("[...]")
+      .append(this.jQuery('<i class="fa fa-eye-slash"></i>'))
+      .append(this.jQuery('<i class="fa fa-eye"></i>'))
       .addClass("toggle")
       .on("click", null, paragraphNumber, this.controller.onToggle)
       .appendTo(outer);
