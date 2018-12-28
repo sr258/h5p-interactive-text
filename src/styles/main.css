@@ -1,27 +1,72 @@
+.paragraph {
+  display: flex;
+}
+
+.paragraph > div {
+  align-self: stretch;
+  align-items: center;
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
 .paragraph:not(.opened) > .content {
   display: none;
 }
 
-.paragraph.opened {
-  display: flex;
+.paragraph.opened > .cut-content {
+  display: none;
 }
 
-.paragraph.opened > .toggle {
-  float: left;
-  align-self: stretch;
-  align-items: center;
-  display: flex;
-  color: gray;
+.paragraph .icon {
+  color: darkgray;
   font-size: small;
+}
+
+.paragraph.opened .show-button {
+  display: none;
+}
+
+.paragraph:not(.opened) .hide-button {
+  display: none;
+}
+
+.toggle button {
+  display: inline-block;
+  border: none;
+  background: inherit;
+  color: inherit;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.toggle button:active {
+  border: none;
+  outline: none;
+}
+
+.paragraph > .toggle {
+  float: left;
+  display: flex;
   margin-right: 0.6em;
   padding-left: 0.2em;
-  padding-right: 0.2em;
+  padding-right: 0.4em;
+  border-right: 1px solid lightgray;
 }
 
-.paragraph.opened .fa-eye {
-  display: none;
+.paragraph > .toggle:hover .icon {
+  color: gray;  
 }
 
-.paragraph:not(.opened) .fa-eye-slash {
-  display: none;
+.paragraph > .toggle:hover {
+  border-color: darkgray;
+}
+
+.paragraph > .toggle:active .icon {
+  color: black;
+  border-color: black;
+}
+
+.paragraph > .toggle:active {
+  border-color: black;
 }

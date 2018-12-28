@@ -37,6 +37,6 @@ export default class InteractiveText extends (H5P.EventDispatcher as { new(): an
     const view = new TextView(H5P.jQuery, this.config, this.state, controller);
 
     $wrapper.get(0).classList.add('h5p-interactive-text');
-    $wrapper.get(0).appendChild(view.getJQuery().get(0));
+    $wrapper.get(0).appendChild(view.getJQueryContent().get(0));
   }
 }

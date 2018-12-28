@@ -6,29 +6,22 @@ import { IObserver, IObservable } from "./observable";
 export default class TextView implements IObserver {
   private root: JQuery<HTMLElement>;
 
-  public constructor(private jQuery: JQueryStatic, config: InteractiveTextConfig, private state: TextState, private controller: TextController) {
+  public constructor(private jQuery: JQueryStatic, private config: InteractiveTextConfig, private state: TextState, private controller: TextController) {
     state.registerObserver(this);
-    this.root = jQuery("<div></div>");
-    let counter = 0;
-    for (const paragraph of config.content) {
-      this.root.append(this.createParagraph(paragraph, counter++));
-    }
+    this.createHtml();
   }
 
   public onChanged(caller: IObservable, propertyName: string): void {
-    this.update();
+    this.updateParagraphs();
   }
 
-  public getJQuery = () => this.root;
+  public getJQueryContent = () => this.root;
 
-  public update() {
-    for (let index = 0; index < this.state.paragraphsStatus.length; index++) {
-      if (this.state.paragraphsStatus[index] === ParagraphStates.Opened) {
-        this.root.find(`#paragraph-${index}`).addClass("opened");
-      }
-      else {
-        this.root.find(`#paragraph-${index}`).removeClass("opened");
-      }
+  private createHtml() {
+    this.root = jQuery("<div></div>");
+    let counter = 0;
+    for (const paragraph of this.config.content) {
+      this.root.append(this.createParagraph(paragraph, counter++));
     }
   }
 
@@ -41,8 +34,8 @@ export default class TextView implements IObserver {
       outer.addClass("opened");
 
     this.jQuery('<div></div>')
-      .append(this.jQuery('<i class="fa fa-eye-slash"></i>'))
-      .append(this.jQuery('<i class="fa fa-eye"></i>'))
+      .append(this.jQuery('<button class="hide-button"><i class="icon fa fa-eye-slash"></i></button>'))
+      .append(this.jQuery('<button class="show-button"><i class="icon fa fa-eye"></i></button>'))
       .addClass("toggle")
       .on("click", null, paragraphNumber, this.controller.onToggle)
       .appendTo(outer);
@@ -51,7 +44,22 @@ export default class TextView implements IObserver {
       .html(paragraph.text)
       .addClass("content")
       .appendTo(outer);
+      
+    this.jQuery("<div>[...]</div>")
+      .addClass("cut-content")
+      .appendTo(outer);
 
     return outer;
+  }
+
+  private updateParagraphs() {
+    for (let index = 0; index < this.state.paragraphsStatus.length; index++) {
+      if (this.state.paragraphsStatus[index] === ParagraphStates.Opened) {
+        this.root.find(`#paragraph-${index}`).addClass("opened");
+      }
+      else {
+        this.root.find(`#paragraph-${index}`).removeClass("opened");
+      }
+    }
   }
 }
