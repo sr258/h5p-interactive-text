@@ -41,3 +41,14 @@
 | abc def ghi jkl (->dict1: hji klm)     | The word in front of the brackets is clickable and links to a dictionary. The headword is the expression in the brackets (hji klm) |
 | abc def ghi jkl (->dict1: hji, noun)   | The word in front of the brackets is clickable and links to a dictionary. The headword is the expression in the brackets (hji). The last word separated by a comma is the part of speech. |
 | [...] abc def ghi [/...]               | The text between the markup is snipped.                                                                   |
+
+## Running
+
+``npm install`` Fetches dependencies.
+``npm build`` Compiles TypeScript to ESScript and packs everything into one file with webpack.
+``npm dist`` Copies all required files to the 'dist' directory.
+``npm deploy`` Copies the 'dist' directory to the desination specified in package.json
+
+## Architecture
+
+The project is built in a MVC-style architecture and uses JQuery to create and modify HTML and to wire events to the controller.
