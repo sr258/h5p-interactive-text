@@ -18,7 +18,7 @@ export default class TextView implements IObserver {
   public getJQueryContent = () => this.root;
 
   private createHtml() {
-    this.root = jQuery("<div></div>");
+    this.root = this.jQuery("<div></div>");
     let counter = 0;
     for (const paragraph of this.config.content) {
       this.root.append(this.createParagraph(paragraph, counter++));
@@ -30,23 +30,28 @@ export default class TextView implements IObserver {
       .attr("id", `paragraph-${paragraphNumber}`)
       .addClass("paragraph");
 
-    if (this.state.paragraphsStatus[paragraphNumber] === ParagraphStates.Opened)
+    if (this.config.behaviour.allowhideforall === false
+      && this.state.paragraphsStatus[paragraphNumber] === ParagraphStates.Opened) {
       outer.addClass("opened");
+      this.jQuery('<div class="toggle-dummy"></div>')
+        .appendTo(outer);
+    } else {
+      if (this.state.paragraphsStatus[paragraphNumber] === ParagraphStates.Opened)
+        outer.addClass("opened");
 
-    this.jQuery('<div></div>')
-      .append(this.jQuery('<button class="hide-button"><i class="icon fa fa-eye-slash"></i></button>'))
-      .append(this.jQuery('<button class="show-button"><i class="icon fa fa-eye"></i></button>'))
-      .addClass("toggle")
-      .on("click", null, paragraphNumber, this.controller.onToggle)
-      .appendTo(outer);
+      this.jQuery('<div class="toggle"></div>')
+        .append(this.jQuery('<button class="hide-button"><i class="icon fa fa-eye-slash"></i></button>'))
+        .append(this.jQuery('<button class="show-button"><i class="icon fa fa-eye"></i></button>'))
+        .on("click", null, paragraphNumber, this.controller.onToggle)
+        .appendTo(outer);
 
+      this.jQuery("<div>[...]</div>")
+        .addClass("cut-content")
+        .appendTo(outer);
+    }
     this.jQuery("<div></div>")
       .html(paragraph.text)
       .addClass("content")
-      .appendTo(outer);
-      
-    this.jQuery("<div>[...]</div>")
-      .addClass("cut-content")
       .appendTo(outer);
 
     return outer;

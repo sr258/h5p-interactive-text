@@ -22,6 +22,7 @@ export class InteractiveTextConfig {
   public behaviour: {
     freelookup: boolean,
     defaultdictionary: string,
+    allowhideforall: boolean,
     dictionaryopenformat: "popup" | "window" | "linksamewindow" | "linknewwindow",
     text2speech: "disabled" | string;
   }

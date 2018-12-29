@@ -4,18 +4,19 @@
 
 ### Content creator
 
-* The creator can enter formatted HTML texts.
+* The creator can enter formatted HTML texts. (done)
 * The creator can mark words which link to dictionary entries (dictionary identifier, optional: headword).
 * The creator can annotate words with explanations.
 * The creator can enable machine pronunciation of clickable expressions and set the language of the text. 
 * The creator can add dictionaries to a list of dictionaries to be used in the links in the text (identifier, selection of built-in dictionaries, custom dictionary links).
 * The creator can add references to the document's source (URL, autor, title, date, ...)
-* The creator can mark passages of the text as clipped.
+* The creator can mark passages of the text as clipped. (done)
 * The creator can add images, videos or audio recording above the text.
 * [optional] The creator can add named versions of the text.
 * [optional] The creator can mark expressions of the text and specify alternatives for them (for a version).
 * The creator can toggle a setting which specifies that the user can look up any (unannotated) word in the default dictionary by clicking/tapping on it.
 * The creator can specify how dictionary links should be opened (iframe with source reference, same window, new tab, popup)
+* The creator can set an option which allows users to hide all paragraphs, also those that aren't clipped.
 
 ### User
 

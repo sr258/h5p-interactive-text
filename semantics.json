@@ -189,6 +189,13 @@
         }
       },
       {
+        "name": "allowhideforall",
+        "type": "boolean",
+        "label": "All paragraphs can be hidden by the user",
+        "optional": false,
+        "default": false        
+      },
+      {
         "name": "dictionaryopenformat",
         "type": "select",
         "label": "Open dictionaries as a ...",
