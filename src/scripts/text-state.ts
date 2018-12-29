@@ -3,30 +3,30 @@ import { IObservable, IObserver } from "./observable";
 
 export enum ParagraphStates {
   Opened,
-  Collapsed
+  Collapsed,
 }
 
-export class TextState implements IObservable {  
-  private observers: IObserver[] = [];
-  
-  public paragraphsStatus: ParagraphStates[];
-  public visibleAnnotation: number;
-
-  constructor() {
-    this.paragraphsStatus = [];
-    this.visibleAnnotation = -1;
-  }
+export class TextState implements IObservable {
 
   public static createFromConfig(config: InteractiveTextConfig): TextState {
     const state = new TextState();
-    for (let paragraph of config.content) {
+    for (const paragraph of config.content) {
       state.paragraphsStatus.push(paragraph.hide ? ParagraphStates.Collapsed : ParagraphStates.Opened);
     }
     return state;
   }
 
   public static createFromContentData(contentData: any): TextState {
-    return <TextState>contentData;
+    return contentData as TextState;
+  }
+  public paragraphsStatus: ParagraphStates[];
+  public visibleAnnotation: number;
+
+  private observers: IObserver[] = [];
+
+  constructor() {
+    this.paragraphsStatus = [];
+    this.visibleAnnotation = -1;
   }
 
   public saveToContentData(): any {
@@ -40,7 +40,7 @@ export class TextState implements IObservable {
 
   public toggleParagraphStatus(paragraphNumber: number) {
     if (this.paragraphsStatus[paragraphNumber] === ParagraphStates.Opened) {
-      this.setParagraphStatus(paragraphNumber, ParagraphStates.Collapsed)
+      this.setParagraphStatus(paragraphNumber, ParagraphStates.Collapsed);
     } else {
       this.setParagraphStatus(paragraphNumber, ParagraphStates.Opened);
     }
@@ -53,7 +53,7 @@ export class TextState implements IObservable {
     this.observers.splice(this.observers.indexOf(observer), 1);
   }
   public onChanged(propertyName: string): void {
-    for(let observer of this.observers){
+    for (const observer of this.observers) {
       observer.onChanged(this, propertyName);
     }
   }

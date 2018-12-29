@@ -1,12 +1,13 @@
 import { InteractiveTextConfig, Paragraph } from "./config";
+import { IObservable, IObserver } from "./observable";
 import TextController from "./text-controller";
-import { TextState, ParagraphStates } from "./text-state";
-import { IObserver, IObservable } from "./observable";
+import { ParagraphStates, TextState } from "./text-state";
 
 export default class TextView implements IObserver {
   private root: JQuery<HTMLElement>;
 
-  public constructor(private jQuery: JQueryStatic, private config: InteractiveTextConfig, private state: TextState, private controller: TextController) {
+  public constructor(private jQuery: JQueryStatic, private config: InteractiveTextConfig,
+    private state: TextState, private controller: TextController) {
     state.registerObserver(this);
     this.createHtml();
   }
@@ -61,8 +62,7 @@ export default class TextView implements IObserver {
     for (let index = 0; index < this.state.paragraphsStatus.length; index++) {
       if (this.state.paragraphsStatus[index] === ParagraphStates.Opened) {
         this.root.find(`#paragraph-${index}`).addClass("opened");
-      }
-      else {
+      } else {
         this.root.find(`#paragraph-${index}`).removeClass("opened");
       }
     }

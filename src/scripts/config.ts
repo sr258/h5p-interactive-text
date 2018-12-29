@@ -1,12 +1,12 @@
-export class Paragraph {
-  public hide: boolean;
-  public text: string;
-}
-
 export class Dictionary {
   public name: string;
   public url: string;
   public css: string;
+}
+
+export class Paragraph {
+  public hide: boolean;
+  public text: string;
 }
 
 export class InteractiveTextConfig {
@@ -25,5 +25,5 @@ export class InteractiveTextConfig {
     allowhideforall: boolean,
     dictionaryopenformat: "popup" | "window" | "linksamewindow" | "linknewwindow",
     text2speech: "disabled" | string;
-  }
+  };
 }

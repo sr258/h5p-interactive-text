@@ -1,5 +1,5 @@
-import "../styles/main.css";
 import InteractiveText from "../scripts/app";
+import "../styles/main.css";
 
 declare var H5P: any;
 

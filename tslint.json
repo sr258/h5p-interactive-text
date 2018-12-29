@@ -1,0 +1,59 @@
+{
+  "extends": "tslint:recommended",
+  "jsRules": {
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "brace-style": [
+      "error",
+      "stroustrup"
+    ],
+    "keyword-spacing": [
+      "error",
+      {
+        "after": true
+      }
+    ],
+    "space-before-blocks": "error",
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "no-extra-boolean-cast": "off",
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ],
+    "no-restricted-globals": [
+      2,
+      "event"
+    ]
+  },
+  "rules": {
+    "no-unused-expression": true,
+    "no-duplicate-variable": true,
+    "curly": false,
+    "class-name": true,
+    "triple-equals": true,
+    "align": [
+      true,
+      "statements",
+      "members",
+      "elements"
+    ],
+    "max-classes-per-file": false
+  }
+}
