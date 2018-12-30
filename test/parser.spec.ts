@@ -39,4 +39,20 @@ describe("Markup parser", () => {
     assert.equal(parser.parse("abc (def ghi jkl) (-> dict1)"),
       'abc <span class="dictionary-linked" data-dictionary-id="dict1">def ghi jkl</span>');
   });
+
+  it('should detect the dictionary link for "jkl" and the headword "hji klm"\
+in "abc def ghi jkl (->dict1: hji klm)"', () => {
+    const parser = new Parser();
+    assert.equal(parser.parse("abc def ghi jkl (->dict1: hji klm)"),
+      'abc def ghi <span class="dictionary-linked" data-dictionary-id="dict1" \
+data-dictionary-headword="hji klm">jkl</span>');
+  });
+
+  it('should detect the dictionary link for "jkl", the headword "hji" and the part of speech "noun"\
+in "abc def ghi jkl (->dict1: hji, noun)"', () => {
+    const parser = new Parser();
+    assert.equal(parser.parse("abc def ghi jkl (->dict1: hji, noun)"),
+      'abc def ghi <span class="dictionary-linked" data-dictionary-id="dict1" \
+data-dictionary-headword="hji" data-dictionary-pos="noun">jkl</span>');
+  });
 });

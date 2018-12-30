@@ -15,11 +15,12 @@ export default class Parser {
   }
 
   private parseDictionaryLinks(html: string): string {
-    const regex1 = /(\(([(\w\s]+)\)|(\w+))\s*\(\s*->\s*(.*?)\)/g;
-    return html.replace(regex1, (substr, group1, group2, group3, group4) => {
+    const regex1 = /(\(([(\w\s]+)\)|(\w+))\s*\(\s*->\s*(.*?)(:\s*(.+?)(\s*,\s*([^\s]+?))?)?\)/g;
+    return html.replace(regex1, (substr, group1, group2, group3, group4, group5, group6, group7, group8) => {
       const annotatedText = group2 || group1;
-      return `<span class="dictionary-linked" data-dictionary-id="${group4}">${annotatedText
-        .replace(/_/g, " ")}</span>`;
+      return `<span class="dictionary-linked" data-dictionary-id="${group4}"\
+${group6 ? ` data-dictionary-headword="${group6}"` : ""}\
+${group8 ? ` data-dictionary-pos="${group8}"` : ""}>${annotatedText.replace(/_/g, " ")}</span>`;
     });
   }
 }
