@@ -1,3 +1,6 @@
+/**
+ * Parses HTML strings and inserts html markup for annotated words and snipped passages.
+ */
 export default class Parser {
   public parse(html: string): string {
     html = this.parseInlineAnnotations(html);
