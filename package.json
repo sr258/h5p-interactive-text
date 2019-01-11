@@ -22,7 +22,7 @@
     "h5p",
     "library"
   ],
-  "author": "Joubel",
+  "author": "Sebastian Rettig",
   "license": "MIT",
   "devDependencies": {
     "@types/assert": "^1.4.1",

@@ -5,5 +5,4 @@ export interface IObserver {
 export interface IObservable {
   registerObserver(observer: IObserver): void;
   unregisterObserver(observer: IObserver): void;
-  onChanged(propertyName: string): void;
 }

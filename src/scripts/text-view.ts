@@ -1,15 +1,26 @@
 import { InteractiveTextConfig, Paragraph } from "./config";
 import { IObservable, IObserver } from "./observable";
+import Parser from "./parser";
 import TextController from "./text-controller";
 import { ParagraphStates, TextState } from "./text-state";
 
-export default class TextView implements IObserver {
+export default class TextView implements IObserver, IObservable {
   private root: JQuery<HTMLElement>;
+  private parser = new Parser();
+  private observers: IObserver[] = [];
 
   public constructor(private jQuery: JQueryStatic, private config: InteractiveTextConfig,
     private state: TextState, private controller: TextController) {
     state.registerObserver(this);
     this.createHtml();
+  }
+
+  public registerObserver(observer: IObserver): void {
+    this.observers.push(observer);
+  }
+
+  public unregisterObserver(observer: IObserver): void {
+    this.observers.slice(this.observers.indexOf(observer), 1);
   }
 
   public onChanged(caller: IObservable, propertyName: string): void {
@@ -18,12 +29,24 @@ export default class TextView implements IObserver {
 
   public getJQueryContent = () => this.root;
 
+  private onPropertyChanged(propertyName: string): void {
+    for (const observer of this.observers) {
+      observer.onChanged(this, propertyName);
+    }
+  }
+
   private createHtml() {
     this.root = this.jQuery("<div></div>");
     let counter = 0;
     for (const paragraph of this.config.content) {
       this.root.append(this.createParagraph(paragraph, counter++));
     }
+  }
+
+  private convertAnnotations(html: string): JQuery.Node[] {
+    html = this.parser.parse(html);
+    const nodes = this.jQuery.parseHTML(html);
+    return nodes;
   }
 
   private createParagraph(paragraph: Paragraph, paragraphNumber: number) {
@@ -51,9 +74,16 @@ export default class TextView implements IObserver {
         .appendTo(outer);
     }
     this.jQuery("<div></div>")
-      .html(paragraph.text)
+      .append(this.convertAnnotations(paragraph.text))
       .addClass("content")
       .appendTo(outer);
+
+    outer.find(".annotated")
+      .on({
+        click: this.controller.onShowAnnotation,
+        mouseout: this.controller.onEndHover,
+        mouseover: this.controller.onStartHover,
+      });
 
     return outer;
   }
@@ -66,5 +96,6 @@ export default class TextView implements IObserver {
         this.root.find(`#paragraph-${index}`).removeClass("opened");
       }
     }
+    this.onPropertyChanged("size");
   }
 }

@@ -35,7 +35,7 @@ export class TextState implements IObservable {
 
   public setParagraphStatus(paragraphNumber: number, status: ParagraphStates) {
     this.paragraphsStatus[paragraphNumber] = status;
-    this.onChanged("paragraphStatus");
+    this.onPropertyChanged("paragraphStatus");
   }
 
   public toggleParagraphStatus(paragraphNumber: number) {
@@ -52,7 +52,7 @@ export class TextState implements IObservable {
   public unregisterObserver(observer: IObserver): void {
     this.observers.splice(this.observers.indexOf(observer), 1);
   }
-  public onChanged(propertyName: string): void {
+  private onPropertyChanged(propertyName: string): void {
     for (const observer of this.observers) {
       observer.onChanged(this, propertyName);
     }

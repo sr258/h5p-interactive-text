@@ -2,18 +2,18 @@
   display: flex;
 }
 
-.paragraph > div {
+.paragraph>div {
   align-self: stretch;
   align-items: center;
   margin-top: 0.4em;
   margin-bottom: 0.4em;
 }
 
-.paragraph:not(.opened) > .content {
+.paragraph:not(.opened)>.content {
   display: none;
 }
 
-.paragraph.opened > .cut-content {
+.paragraph.opened>.cut-content {
   display: none;
 }
 
@@ -45,7 +45,8 @@
   outline: none;
 }
 
-.paragraph > .toggle, .paragraph > .toggle-dummy {
+.paragraph>.toggle,
+.paragraph>.toggle-dummy {
   float: left;
   display: flex;
   margin-right: 0.6em;
@@ -54,23 +55,43 @@
   width: 1.8em;
 }
 
-.paragraph > .toggle {
+.paragraph>.toggle {
   border-right: 1px solid lightgray;
 }
 
-.paragraph > .toggle:hover .icon {
-  color: gray;  
+.paragraph>.toggle:hover .icon {
+  color: gray;
 }
 
-.paragraph > .toggle:hover {
+.paragraph>.toggle:hover {
   border-color: darkgray;
 }
 
-.paragraph > .toggle:active .icon {
+.paragraph>.toggle:active .icon {
   color: black;
   border-color: black;
 }
 
-.paragraph > .toggle:active {
+.paragraph>.toggle:active {
   border-color: black;
+}
+
+.annotated {
+  background: #4ca9ff40;
+  border: 1px solid #4ca9ff63;
+  border-radius: 3px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.annotated:hover {
+  background: #4ca9ff29;
+}
+
+.annotated:active {
+  background: #4ca9ff14;
+}
+
+.annotation {
+  display: none;
 }
