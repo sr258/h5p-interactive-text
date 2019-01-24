@@ -13,7 +13,7 @@ export default class Parser {
     return html.replace(regex1, (substr, group1, group2, group3, group4) => {
       const annotatedText = group2 || group1;
       return `<span class="annotated">${annotatedText
-        .replace(/_/g, " ")} <span class="annotation">${group4}</span></span>`;
+        .replace(/_/g, " ")}<span class="annotation">${group4}</span></span>`;
     });
   }
 

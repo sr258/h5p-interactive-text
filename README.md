@@ -5,25 +5,26 @@
 ### Content creator
 
 * The creator can enter formatted HTML texts. (done)
-* The creator can mark words which link to dictionary entries (dictionary identifier, optional: headword).
-* The creator can annotate words with explanations.
+* The creator can mark words which link to dictionary entries (dictionary identifier, optional: headword). (done)
+* The creator can annotate words with explanations. (done)
 * The creator can enable machine pronunciation of clickable expressions and set the language of the text. 
 * The creator can add dictionaries to a list of dictionaries to be used in the links in the text (identifier, selection of built-in dictionaries, custom dictionary links).
 * The creator can add references to the document's source (URL, autor, title, date, ...)
 * The creator can mark passages of the text as clipped. (done)
 * The creator can add images, videos or audio recording above the text.
-* The creator can toggle a setting which specifies that the user can look up any (unannotated) word in the default dictionary by clicking/tapping on it.
+* The creator can toggle a setting which specifies that the user can look up any (unannotated) word in the default dictionary by clicking/tapping on it. (done)
 * The creator can specify how dictionary links should be opened (iframe with source reference, same window, new tab, popup)
 * The creator can set an option which allows users to hide all paragraphs, also those that aren't clipped.
 
 ### User
 
-* The user can view the formatted text.
+* The user can view the formatted text. (done)
 * The user can see the image or play the video or audio recording.
-* The user can see which expressions are annotated or have links to dictionaries.
-* The user can click or tap on expressions to see the annotation follow the links. If an annotation includes pronunciation it is automatically played.
-* The user can see that passages are clipped.
-* The user can open clipped passages and close them again.
+* The user can see which expressions are annotated or have links to dictionaries. (done 1/2)
+* The user can click or tap on expressions to see the annotation / follow the links. (done)
+* If an annotation includes pronunciation it is automatically played.
+* The user can see that passages are clipped. (done 1/2)
+* The user can open clipped passages and close them again. (done 1/2)
 * The user can click on the source reference to follow the link.
 * If configured, the user can click on any (unannotated) word to open the link to the default dictionary for this word.
 
