@@ -10,8 +10,9 @@
         "type": "library",
         "label": "Type",
         "options": [
-          "H5P.Image 1.0",
-          "H5P.Video 1.3"
+          "H5P.Image 1.1",
+          "H5P.Video 1.6",
+          "H5P.Audio 1.5"
         ],
         "optional": true,
         "description": "Optional media to display above the question."
@@ -143,16 +144,7 @@
               "type": "text",
               "label": "CSS (optional)",
               "optional": true,
-              "description": "You can style the dictionary entry with custom css rules",
-              "widget": "showWhen",
-              "showWhen": {
-                "rules": [
-                  {
-                    "field": "../../../behaviour/dictionaryopenformat",
-                    "equals": "popup"
-                  }
-                ]
-              }
+              "description": "You can style the dictionary entry with custom css rules"
             }
           ]
         }
